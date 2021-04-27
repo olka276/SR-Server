@@ -18,4 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/save', 'App\Http\Controllers\FileController@saveFile');
+Route::group([
+    'namespace' => 'App\Http\Controllers'
+], function () {
+    Route::post('/upload', 'FileController@uploadFile');
+    Route::post('/download', 'FileController@downloadFile');
+    Route::get('/list', 'FileController@getListOfFiles');
+});
+
