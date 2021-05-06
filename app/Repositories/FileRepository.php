@@ -23,6 +23,10 @@ class FileRepository
         return $file;
     }
 
+    /**
+     * @param $attributes
+     * @return File
+     */
     public function findByAttribute($attributes): File
     {
         $query = File::query();
@@ -34,7 +38,10 @@ class FileRepository
         return $query->first();
     }
 
+    /**
+     * @return mixed
+     */
     public function getAll() {
-        return File::all();
+        return File::orderBy('created_at', 'desc')->get();
     }
 }
